@@ -6,13 +6,11 @@ package model.cliente;
 public abstract class Cliente {
 
   private String telefone;
-  private String cpf_cnpj;
   private String nome;
   private String endereco;
   
-  public Cliente(String telefone, String cpf_cnpj, String nome, String endereco;) {
+  public Cliente(String telefone, String nome, String endereco;) {
     this.telefone=telefone;
-    this.cpf_cnpj=cpf_cnpj;
     this.nome = nome;
     this.endereco=endereco;
   }
@@ -21,12 +19,6 @@ public abstract class Cliente {
   }
   public void setTelefone(String telefone) {
     this.telefone = telefone;
-  }
-    public String getCpf_cnpj() {
-    return cpf_cnpj;
-  }
-  public void setCpf_cnpj(String cpf_cnpj) {
-    this.cpf_cnpj = cpf_cnpj;
   }
   
   public String getNome() {
