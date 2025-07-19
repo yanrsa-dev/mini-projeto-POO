@@ -3,7 +3,7 @@ package model.cliente;
 public class PessoaFisica extends Cliente{
   private String cpf;
   public PessoaFisica(String telefone, String nome, String endereco,String cpf){
-    super(telefone,nome, endereco,cpf);
+    super(telefone,nome, endereco);
     this.cpf=cpf;
   }
   public String getCpf() {
