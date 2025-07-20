@@ -2,24 +2,32 @@ package service;
 
 import model.cliente.Cliente;
 import repository.ClienteRepository;
+
 import java.util.List;
+import java.util.Optional;
 
 public class ClienteService {
-   private ClienteRepository repository = new ClienteRepository();
+
+    private ClienteRepository clienteRepository;
+
+    public ClienteService() {
+        this.clienteRepository = new ClienteRepository();
+    }
 
     public void cadastrarCliente(Cliente cliente) {
-        repository.cadastrarCliente(cliente);
+        clienteRepository.cadastraCliente(cliente);
     }
 
     public List<Cliente> listarClientes() {
-        return repository.getClientes();
+        return clienteRepository.getClientes();
     }
 
     public Cliente buscarClientePorId(Long id) {
-        return repository.buscarClientePorId(id);
+        Optional<Cliente> clienteOptional = clienteRepository.buscarClientePorId(id);
+        return clienteOptional.orElse(null);
     }
 
     public boolean atualizarCliente(Cliente clienteAtualizado) {
-        return repository.atualizarCliente(clienteAtualizado);
+        return clienteRepository.atualizarCliente(clienteAtualizado);
     }
 }
