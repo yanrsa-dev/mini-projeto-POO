@@ -19,7 +19,7 @@ public class ClienteRepository {
         return clientes.stream().filter(c -> c.getId() == id).findFirst();
     }
 
-}
+
 public boolean atualizarCliente(Cliente clienteAtualizado) {
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getId() == clienteAtualizado.getId()) {
@@ -28,5 +28,6 @@ public boolean atualizarCliente(Cliente clienteAtualizado) {
             }
         }
         return false;
-    }
+}
+}
 
