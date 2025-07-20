@@ -13,6 +13,7 @@ public abstract class Cliente {
   private String endereco;
 
   public Cliente(String telefone, String nome, String endereco) {
+    this.id=idContador++;
     this.telefone = telefone;
     this.nome = nome;
     this.endereco = endereco;
