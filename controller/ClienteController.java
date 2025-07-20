@@ -1,24 +1,29 @@
-import repository.ClienteRepository;
+ package controller;
+
+import model.cliente.Cliente;
+import model.cliente.PessoaFisica;
+import model.cliente.PessoaJuridica;
 import service.ClienteService;
+
+import java.util.List;
 
 public class ClienteController {
 
-  private ClienteService clienteService;
-  private ClienteRepository clienteRepository;
+private ClienteService clienteService;
 
-  public ClienteController(ClienteService clienteService, ClienteRepository clienteRepository){
-    this.clienteService=clienteService;
-    this.clienteRepository=clienteRepository;
-  }
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
 
-  public void criarPessoaFisica(Cliente novoCliente){
-   clienteService.criarPessoaFisica(novoCliente.getTelefone(),novoCliente.getNome()
-  , novoCliente.getEndereco(), novoCliente.getCpf(), novoCliente.get)
-  }
+    public void cadastrarPessoaFisica(,String endereco,String nome, String telefone, String cpf) {
+        PessoaFisica pf = new PessoaFisica(nome, endereco, telefone, cpf);
+        clienteService.cadastrarCliente(pf);
+    }
+   public void cadastrarPessoaJuridica(String nome, String endereco, String telefone, String cnpj) {
+        PessoaJuridica pj = new PessoaJuridica(nome, endereco, telefone, cnpj);
+        clienteService.cadastrarCliente(pj);
+    }
 
-    public void criarPessoaJuridica(Cliente novoCliente){
-   clienteService.criarPessoaJuridica(novoCliente.getTelefone(),novoCliente.getNome()
-  , novoCliente.getEndereco(), novoCliente.getCnpj(), novoCliente.get)
-  }
 
 }
+
