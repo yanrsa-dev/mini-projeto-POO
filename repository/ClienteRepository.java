@@ -7,9 +7,11 @@ import model.cliente.Cliente;
 
 public class ClienteRepository {
   private List<Cliente> clientes = new ArrayList<>();
+  private static Long contador=1L;
   
   public void cadastraCliente(Cliente cliente){
     clientes.add(cliente);
+    cliente.setId(contador++);
   }
 
   public List<Cliente> getClientes(){

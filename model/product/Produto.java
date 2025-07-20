@@ -8,12 +8,16 @@ public abstract class Produto {
   private String nome;
   private BigDecimal preco;
   private int quantidadeEmEstoque;
+  private double peso;
+  private String marca;
 
 
-  public Produto(String nome, BigDecimal preco, int quantidadeEmEstoque) {
+  public Produto(String nome, BigDecimal preco, int quantidadeEmEstoque, double peso, String marca) {
     this.nome = nome;
     this.preco = preco;
     this.quantidadeEmEstoque=quantidadeEmEstoque;
+    this.peso=peso;
+    this.marca=marca;
   }
 
 
@@ -55,6 +59,23 @@ public abstract class Produto {
   public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
     this.quantidadeEmEstoque = quantidadeEmEstoque;
   }
+
+  public void setPeso(double peso){
+    this.peso=peso;
+  }
+
+  public double getPeso(){
+    return peso;
+  }
+
+  public void setMarca(String marca){
+    this.marca=marca;
+  }
+
+  public String getMarca(){
+    return marca;
+  }
+
 
 
   @Override

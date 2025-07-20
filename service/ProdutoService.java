@@ -1,13 +1,14 @@
 package service;
 
-import enums.TiposProdutos;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
 import model.product.Produto;
-import model.product.ProdutoDigital;
-import model.product.ProdutoFisico;
+import model.product.ProdutoAlimenticio;
+import model.product.ProdutoEletronico;
+import model.product.ProdutoDomesticos;
 import repository.ProdutoRepository;
 
 public class ProdutoService {
@@ -18,71 +19,91 @@ public class ProdutoService {
     this.produtoRepository = produtoRepository;
   }
 
-  public ProdutoFisico criarProdutoFisicoNaoPericivel(
+  public ProdutoAlimenticio criarProdutoAlimenticio(
       String nome,
       BigDecimal preco,
-      int quantidadeEmEstoque,
+      int qtdEstoque,
       double peso,
-      TiposProdutos tiposProdutos) {
-    ProdutoFisico novoProdutoFisico =
-        new ProdutoFisico(nome, preco, quantidadeEmEstoque, peso, tiposProdutos);
-    produtoRepository.adicionaProduto(novoProdutoFisico);
-    return novoProdutoFisico;
-  }
-
-  public ProdutoFisico criarProdutoFisicoPericivel(
-      String nome,
-      BigDecimal preco,
-      int quantidadeEmEstoque,
-      double peso,
-      TiposProdutos tiposProdutos,
+      String marca,
       LocalDate validade) {
-    ProdutoFisico novoProdutoFisico =
-        new ProdutoFisico(nome, preco, quantidadeEmEstoque, peso, tiposProdutos, validade);
-    produtoRepository.adicionaProduto(novoProdutoFisico);
-    return novoProdutoFisico;
+    ProdutoAlimenticio novoProduto =
+        new ProdutoAlimenticio(nome, preco, qtdEstoque, peso, marca, validade);
+    produtoRepository.adicionaProduto(novoProduto);
+    return novoProduto;
   }
 
-  public ProdutoDigital criarProdutoDigital(
-      String nome, BigDecimal preco, int quantidadeEmEstoque, double distanciaEntreCompradorLoja) {
-    ProdutoDigital novoProdutoDigital =
-        new ProdutoDigital(nome, preco, quantidadeEmEstoque, distanciaEntreCompradorLoja);
-    produtoRepository.adicionaProduto(novoProdutoDigital);
-    return novoProdutoDigital;
+  public ProdutoEletronico criarProdutoEletronico(
+      String nome,
+      BigDecimal preco,
+      int qtdEstoque,
+      double peso,
+      String marca,
+      int voltagem,
+      LocalDate garantia) {
+    ProdutoEletronico novoProduto =
+        new ProdutoEletronico(nome, preco, qtdEstoque, peso, marca, voltagem, garantia);
+    produtoRepository.adicionaProduto(novoProduto);
+    return novoProduto;
   }
 
-  public ProdutoFisico atualizarProduto(ProdutoFisico novoProduto, Long id) {
-    Optional<Produto> opt = produtoRepository.getProdutoById(id);
-    if (opt.isPresent() && opt.get() instanceof ProdutoFisico) {
-      ProdutoFisico produtoExistente = (ProdutoFisico) opt.get();
-      produtoExistente.setNome(novoProduto.getNome());
-      produtoExistente.setPreco(novoProduto.getPreco());
-      produtoExistente.setQuantidadeEmEstoque(novoProduto.getQuantidadeEmEstoque());
-      produtoExistente.setPeso(novoProduto.getPeso());
-      produtoExistente.setTiposProdutos(novoProduto.getTiposProdutos());
-      if (novoProduto.getValidade() != null) {
-        produtoExistente.setValidade(novoProduto.getValidade());
-      }
-      return produtoExistente;
+  public ProdutoDomesticos criarProdutosDomesticos(
+      String nome,
+      BigDecimal preco,
+      int qtdEstoque,
+      double peso,
+      String marca,
+      String material,
+      String utilidade) {
+    ProdutoDomesticos novoProduto =
+        new ProdutoDomesticos(nome, preco, qtdEstoque, peso, marca, material, utilidade);
+    produtoRepository.adicionaProduto(novoProduto);
+    return novoProduto;
+  }
+
+  public Produto atualizarProduto(Long id, Produto produtoAtualizado) {
+    Produto produtoExistente =
+        produtoRepository
+            .getProdutoById(id)
+            .orElseThrow(
+                () ->
+                    new RuntimeException(
+                        "Produto de id " + id + " não encontrado para atualização."));
+
+    produtoExistente.setNome(produtoAtualizado.getNome());
+    produtoExistente.setPreco(produtoAtualizado.getPreco());
+    produtoExistente.setQuantidadeEmEstoque(produtoAtualizado.getQuantidadeEmEstoque());
+    produtoExistente.setMarca(produtoAtualizado.getMarca());
+    produtoExistente.setPeso(produtoAtualizado.getPeso());
+
+    if (produtoExistente instanceof ProdutoAlimenticio
+        && produtoAtualizado instanceof ProdutoAlimenticio) {
+      ProdutoAlimenticio existente = (ProdutoAlimenticio) produtoExistente;
+      ProdutoAlimenticio atualizado = (ProdutoAlimenticio) produtoAtualizado;
+      existente.setValidade(atualizado.getValidade());
+
+    } else if (produtoExistente instanceof ProdutoEletronico
+        && produtoAtualizado instanceof ProdutoEletronico) {
+      ProdutoEletronico existente = (ProdutoEletronico) produtoExistente;
+      ProdutoEletronico atualizado = (ProdutoEletronico) produtoAtualizado;
+      existente.setVoltagem(atualizado.getVoltagem());
+      existente.setGarantia(atualizado.getGarantia());
+
+    } else if (produtoExistente instanceof ProdutoDomesticos
+        && produtoAtualizado instanceof ProdutoDomesticos) {
+      ProdutoDomesticos existente = (ProdutoDomesticos) produtoExistente;
+      ProdutoDomesticos atualizado = (ProdutoDomesticos) produtoAtualizado;
+      existente.setMaterial(atualizado.getMaterial());
+      existente.setUtilidade(atualizado.getUtilidade());
     }
-    throw new RuntimeException("Produto de id " + id + " nao encontrado");
+
+    return produtoExistente;
   }
 
-  public ProdutoDigital atualizarProdutoDgital(ProdutoDigital novoProduto, Long id) {
-    Optional<Produto> opt = produtoRepository.getProdutoById(id);
-    if (opt.isPresent() && opt.get() instanceof ProdutoDigital) {
-      ProdutoDigital produtoExistente = (ProdutoDigital) opt.get();
-      produtoExistente.setNome(novoProduto.getNome());
-      produtoExistente.setPreco(novoProduto.getPreco());
-      produtoExistente.setQuantidadeEmEstoque(novoProduto.getQuantidadeEmEstoque());
-      produtoExistente.setDistanciaEntreCompradorLoja(novoProduto.getDistanciaEntreCompradorLoja());
-      return produtoExistente;
-    }
-
-    throw new RuntimeException("Produto de id " + id + " nao encontrado");
+  public Optional<Produto> listarProdutoById(Long id){
+    return produtoRepository.getProdutoById(id);
   }
 
   public List<Produto> listarProdutos() {
-    return produtoRepository.getProdutos();
+    return produtoRepository.listar();
   }
 }

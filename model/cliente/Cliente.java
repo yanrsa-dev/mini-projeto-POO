@@ -6,23 +6,15 @@ package model.cliente;
 • Atualizar clientes.*/
 
 public abstract class Cliente {
-  private static Long idContador=1L;
   private Long id;
   private String telefone;
   private String nome;
   private String endereco;
 
   public Cliente(String telefone, String nome, String endereco) {
-    this.id=idContador++;
     this.telefone = telefone;
     this.nome = nome;
     this.endereco = endereco;
-  }
-  public static Long getIdContador(){
-    return idContador;
-  }
-    public static void setIdContador(Long idContador) {
-    Cliente.idContador = idContador;
   }
 
   public Long getId(){

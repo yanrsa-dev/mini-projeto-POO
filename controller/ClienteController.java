@@ -6,6 +6,7 @@ import model.cliente.PessoaJuridica;
 import service.ClienteService;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ClienteController {
 
@@ -31,24 +32,14 @@ private ClienteService clienteService;
             return;
         }
 
-        System.out.println("=== Lista de Clientes ===");
         for (Cliente cliente : clientes) {
-            System.out.println("ID: " + cliente.getId());
-            System.out.println("Nome: " + cliente.getNome());
-            System.out.println("Endereço: " + cliente.getEndereco());
-            System.out.println("Telefone: " + cliente.getTelefone());
-
-            if (cliente instanceof PessoaFisica) {
-                System.out.println("CPF: " + ((PessoaFisica) cliente).getCpf());
-                System.out.println("Tipo: Pessoa Física");
-            } else if (cliente instanceof PessoaJuridica) {
-                System.out.println("CNPJ: " + ((PessoaJuridica) cliente).getCnpj());
-                System.out.println("Tipo: Pessoa Jurídica");
-            }
-
-            System.out.println("----------------------------");
+          System.out.println(cliente);
         }
     }
+
+   public Optional<Cliente> getClienteById(Long id){
+     return Optional.ofNullable(clienteService.buscarClientePorId(id));
+   }
 
 
 }

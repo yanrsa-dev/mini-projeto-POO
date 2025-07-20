@@ -10,8 +10,8 @@ public class ClienteService {
 
     private ClienteRepository clienteRepository;
 
-    public ClienteService() {
-        this.clienteRepository = new ClienteRepository();
+    public ClienteService(ClienteRepository clienteRepository) {
+      this.clienteRepository=clienteRepository;
     }
 
     public void cadastrarCliente(Cliente cliente) {
