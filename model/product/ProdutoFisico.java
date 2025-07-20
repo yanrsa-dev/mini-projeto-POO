@@ -31,4 +31,21 @@ public class ProdutoFisico extends Produto {
     this.peso = peso;
   }
 
+  public TiposProdutos getTiposProdutos() {
+    return tiposProdutos;
+  }
+
+  public void setTiposProdutos(TiposProdutos tiposProdutos) {
+    this.tiposProdutos = tiposProdutos;
+  }
+
+  public LocalDate getValidade() {
+    return validade;
+  }
+
+  public void setValidade(LocalDate validade) {
+    this.validade = validade;
+  }
+
+
 }

@@ -1,5 +1,7 @@
 package service;
 import java.util.List;
+import java.util.Optional;
+
 import model.notas.Nota;
 import repository.NotasRepository;
 import model.notas.ItemNota;
@@ -20,5 +22,13 @@ public class NotasService {
 
   public List<Nota> listarNotas() {
     return notasRepository.getNotas();
+  }
+
+  public Nota filtrarNota(Long id){
+    Optional<Nota> opt = notasRepository.getNotaById(id);
+    if(opt.isPresent()){
+      return (Nota)opt.get();
+    }
+    throw new RuntimeException("Nota de id: " + id + " nao encontrada");
   }
 }

@@ -1,6 +1,7 @@
 package model.notas;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Nota {
   private Cliente cliente;
   private List<ItemNota> listaItemNota;
   private Long id;
+  private LocalDateTime data;
 
   public Nota(){
     this.listaItemNota=new ArrayList<>();
@@ -24,6 +26,7 @@ public class Nota {
     this.cliente=cliente;
     this.listaItemNota= new ArrayList<>();
     this.id=contador++;
+    this.data = LocalDateTime.now();
   }
 
 

@@ -1,6 +1,8 @@
 package model.product;
 import java.math.BigDecimal;
 
+import enums.TiposProdutos;
+
 public class ProdutoDigital extends Produto {
   
   private BigDecimal frete;
