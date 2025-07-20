@@ -1,7 +1,11 @@
+package controller;
+import enums.TiposProdutos;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import model.product.Produto;
+import model.product.ProdutoDigital;
 import model.product.ProdutoFisico;
-import repository.ProdutoRepository;
 import service.ProdutoService;
 
 public class ProdutoController {
@@ -12,31 +16,20 @@ public class ProdutoController {
     this.produtoService = produtoService;
   }
 
-  public void criarProdutoFisicoNaoPericivel(Produto novoProduto) {
-    if (novoProduto instanceof ProdutoFisico produtoFisico) {
-      produtoService.criarProdutoFisicoNaoPericivel(
-          produtoFisico.getNome(),
-          produtoFisico.getPreco(),
-          produtoFisico.getQuantidadeEmEstoque(),
-          produtoFisico.getPeso(),
-          produtoFisico.getTiposProdutos());
-    } else {
-      System.out.println("Produto informado não é físico.");
-    }
+  public void criarProdutoFisicoPericivel(
+      String nome,
+      BigDecimal preco,
+      int qtdEstoque,
+      double peso,
+      TiposProdutos tipo,
+      LocalDate validade) {
+
+    produtoService.criarProdutoFisicoPericivel(nome, preco, qtdEstoque, peso, tipo, validade);
   }
 
-  public void criarProdutoFisicoPericivel(Produto novoProduto) {
-    if (novoProduto instanceof ProdutoFisico produtoFisico) {
-      produtoService.criarProdutoFisicoPericivel(
-          produtoFisico.getNome(),
-          produtoFisico.getPreco(),
-          produtoFisico.getQuantidadeEmEstoque(),
-          produtoFisico.getPeso(),
-          produtoFisico.getTiposProdutos(),
-          produtoFisico.getValidade());
-    } else {
-      System.out.println("Produto informado não é físico.");
-    }
+  public void criarProdutoFisicoNaoPericivel(
+      String nome, BigDecimal preco, int qtdEstoque, double peso, TiposProdutos tipo) {
+    produtoService.criarProdutoFisicoNaoPericivel(nome, preco, qtdEstoque, peso, tipo);
   }
 
   public void listarProdutos() {
@@ -48,5 +41,10 @@ public class ProdutoController {
 
   public Produto atualizarProdutoFisico(ProdutoFisico updateProduto, Long id) {
     return produtoService.atualizarProduto(updateProduto, id);
+  }
+
+  public Produto atualizarProdutoDigital(ProdutoDigital updateProduto, Long id) {
+    updateProduto.setId(id);
+    return produtoService.atualizarProdutoDgital(updateProduto, id);
   }
 }
