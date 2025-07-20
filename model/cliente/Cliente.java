@@ -7,11 +7,11 @@ package model.cliente;
 
 public abstract class Cliente {
   private Long id;
-  private String telefone;
   private String nome;
   private String endereco;
+  private String telefone;
 
-  public Cliente(String telefone, String nome, String endereco) {
+  public Cliente( String nome, String endereco,String telefone,) {
     this.telefone = telefone;
     this.nome = nome;
     this.endereco = endereco;
