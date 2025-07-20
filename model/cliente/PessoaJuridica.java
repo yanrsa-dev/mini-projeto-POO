@@ -2,8 +2,8 @@ package model.cliente;
 
 public class PessoaJuridica extends Cliente{
   private String cnpj;
-  public PessoaJuridica(String telefone, String nome, String endereco,String cnpj){
-    super(telefone,nome, endereco);
+  public PessoaJuridica( String nome, String endereco,String telefone,String cnpj){
+    super(nome, endereco,telefone);
     this.cnpj=cnpj;
   }
   public String getCnpj() {
