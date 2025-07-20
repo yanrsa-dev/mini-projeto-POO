@@ -16,7 +16,7 @@ private ClienteService clienteService;
         this.clienteService = clienteService;
     }
 
-    public void cadastrarPessoaFisica(String endereco,String nome, String telefone, String cpf) {
+    public void cadastrarPessoaFisica(String nome,String endereco, String telefone, String cpf) {
         PessoaFisica pf = new PessoaFisica(nome, endereco, telefone, cpf);
         clienteService.cadastrarCliente(pf);
     }
