@@ -7,8 +7,10 @@ import model.product.Produto;
 
 public class ProdutoRepository {
   private List<Produto> produtos = new ArrayList<>();
+  private static Long contador=1L;
   
   public void adicionaProduto(Produto produto){
+    produto.setId(contador++);
     produtos.add(produto);
   }
 

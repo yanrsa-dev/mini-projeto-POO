@@ -10,7 +10,6 @@ import model.notas.ItemNota;
 
 public class Nota {
 
-  private static Long contador=1L;
 
   private Cliente cliente;
   private List<ItemNota> listaItemNota;
@@ -19,13 +18,11 @@ public class Nota {
 
   public Nota(){
     this.listaItemNota=new ArrayList<>();
-    this.id=contador++;
   }
 
   public Nota(Cliente cliente, List<ItemNota> listaItemNota){
     this.cliente=cliente;
-    this.listaItemNota= new ArrayList<>();
-    this.id=contador++;
+    this.listaItemNota= listaItemNota;
     this.data = LocalDateTime.now();
   }
 
@@ -37,7 +34,7 @@ public class Nota {
     }
     return totalConta;
   }
-  
+
   public Cliente getCliente() {
     return cliente;
   }
@@ -54,8 +51,27 @@ public class Nota {
     this.listaItemNota = listaItemNota;
   }
 
-  public Long getId(){
+  public Long getId() {
     return id;
   }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public LocalDateTime getData() {
+    return data;
+  }
+
+  public void setData(LocalDateTime data) {
+    this.data = data;
+  }
+
+  @Override
+  public String toString() {
+    return "Nota [cliente=" + cliente + ", listaItemNota=" + listaItemNota + "]" + "Total [total= R$" + calcularTotalDaConta(listaItemNota) + "]";
+  }
+  
+
   
 }

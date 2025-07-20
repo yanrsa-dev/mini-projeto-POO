@@ -9,12 +9,14 @@ import model.notas.Nota;
 public class NotasRepository {
 
   private List<Nota> notas = new ArrayList<>();
+  private static Long contador=1L;
 
   public void adicionaNota(Nota nota){
+    nota.setId(contador++);
     notas.add(nota);
   }
 
-  public List<Nota> getNotas(){
+  public List<Nota> listarNotas(){
     return notas;
   }
 

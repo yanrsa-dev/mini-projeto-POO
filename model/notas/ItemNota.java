@@ -34,4 +34,11 @@ public class ItemNota {
   public void setQuantidadeDeItens(int quantidadeDeItens) {
     this.quantidadeDeItens = quantidadeDeItens;
   }
+
+  @Override
+  public String toString() {
+    return "ItemNota [produto=" + produto + ", quantidadeDeItens=" + quantidadeDeItens + ", calcularSubtotal()="
+        + calcularSubtotal() + "]";
+  }
+
 }

@@ -21,7 +21,7 @@ public class NotasService {
   }
 
   public List<Nota> listarNotas() {
-    return notasRepository.getNotas();
+    return notasRepository.listarNotas();
   }
 
   public Nota filtrarNota(Long id){

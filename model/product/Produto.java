@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public abstract class Produto {
 
-  private static Long idContador=1L;
   private Long id;
   private String nome;
   private BigDecimal preco;
@@ -15,17 +14,6 @@ public abstract class Produto {
     this.nome = nome;
     this.preco = preco;
     this.quantidadeEmEstoque=quantidadeEmEstoque;
-    this.id=idContador++;
-  }
-
-
-  public static Long getIdContador() {
-    return idContador;
-  }
-
-
-  public static void setIdContador(Long idContador) {
-    Produto.idContador = idContador;
   }
 
 
@@ -66,6 +54,13 @@ public abstract class Produto {
 
   public void setQuantidadeEmEstoque(int quantidadeEmEstoque) {
     this.quantidadeEmEstoque = quantidadeEmEstoque;
+  }
+
+
+  @Override
+  public String toString() {
+    return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", quantidadeEmEstoque=" + quantidadeEmEstoque
+        + "]";
   }
 
 
