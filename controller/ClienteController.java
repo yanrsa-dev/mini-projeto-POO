@@ -23,6 +23,32 @@ private ClienteService clienteService;
         PessoaJuridica pj = new PessoaJuridica(nome, endereco, telefone, cnpj);
         clienteService.cadastrarCliente(pj);
     }
+   public void listarClientes() {
+        List<Cliente> clientes = clienteService.listarClientes();
+
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente cadastrado.");
+            return;
+        }
+
+        System.out.println("=== Lista de Clientes ===");
+        for (Cliente cliente : clientes) {
+            System.out.println("ID: " + cliente.getId());
+            System.out.println("Nome: " + cliente.getNome());
+            System.out.println("Endereço: " + cliente.getEndereco());
+            System.out.println("Telefone: " + cliente.getTelefone());
+
+            if (cliente instanceof PessoaFisica) {
+                System.out.println("CPF: " + ((PessoaFisica) cliente).getCpf());
+                System.out.println("Tipo: Pessoa Física");
+            } else if (cliente instanceof PessoaJuridica) {
+                System.out.println("CNPJ: " + ((PessoaJuridica) cliente).getCnpj());
+                System.out.println("Tipo: Pessoa Jurídica");
+            }
+
+            System.out.println("----------------------------");
+        }
+    }
 
 
 }
