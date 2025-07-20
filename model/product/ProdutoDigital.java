@@ -1,3 +1,4 @@
+package model.product;
 import java.math.BigDecimal;
 
 public class ProdutoDigital extends Produto {
