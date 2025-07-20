@@ -4,18 +4,32 @@ import java.math.BigDecimal;
 public class ProdutoDigital extends Produto {
   
   private BigDecimal frete;
+  private double distanciaEntreCompradorLoja;
 
-  public ProdutoDigital(String nome, BigDecimal preco, int quantidadeEmEstoque, BigDecimal frete){
+  public ProdutoDigital(String nome, BigDecimal preco, int quantidadeEmEstoque, double distanciaEntreCompradorLoja){
     super(nome, preco,quantidadeEmEstoque);
-    this.frete=frete;
+    this.distanciaEntreCompradorLoja=distanciaEntreCompradorLoja;
+    this.frete=calcularFrete(distanciaEntreCompradorLoja);
   }
 
-  public BigDecimal getFrete() {
+  public BigDecimal calcularFrete(double distanciaEntreCompradorLoja){
+    BigDecimal distancia = BigDecimal.valueOf(distanciaEntreCompradorLoja);
+    BigDecimal acrecimo = BigDecimal.valueOf(0.5);
+    BigDecimal resultado = distancia.multiply(acrecimo);
+    frete = frete.add(resultado);
     return frete;
   }
 
-  public void setFrete(BigDecimal frete) {
-    this.frete = frete;
+  public BigDecimal getFrete() {
+    return calcularFrete(distanciaEntreCompradorLoja);
+  }
+
+  public double getDistanciaEntreCompradorLoja() {
+    return distanciaEntreCompradorLoja;
+  }
+
+  public void setDistanciaEntreCompradorLoja(double distanciaEntreCompradorLoja) {
+    this.distanciaEntreCompradorLoja = distanciaEntreCompradorLoja;
   }
 
 }
