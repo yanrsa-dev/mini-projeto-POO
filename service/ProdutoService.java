@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 import model.product.Produto;
 import model.product.ProdutoDigital;
 import model.product.ProdutoFisico;
@@ -13,7 +12,6 @@ import repository.ProdutoRepository;
 
 public class ProdutoService {
 
-  Scanner sc = new Scanner(System.in);
   private ProdutoRepository produtoRepository;
 
   public ProdutoService(ProdutoRepository produtoRepository) {
@@ -53,7 +51,7 @@ public class ProdutoService {
     return novoProdutoDigital;
   }
 
-  public ProdutoFisico atualizarProdutoFisicoPericivel(ProdutoFisico novoProduto, Long id) {
+  public ProdutoFisico atualizarProduto(ProdutoFisico novoProduto, Long id) {
     Optional<Produto> opt = produtoRepository.getProdutoById(id);
     if (opt.isPresent() && opt.get() instanceof ProdutoFisico) {
       ProdutoFisico produtoExistente = (ProdutoFisico) opt.get();
@@ -62,21 +60,9 @@ public class ProdutoService {
       produtoExistente.setQuantidadeEmEstoque(novoProduto.getQuantidadeEmEstoque());
       produtoExistente.setPeso(novoProduto.getPeso());
       produtoExistente.setTiposProdutos(novoProduto.getTiposProdutos());
-      produtoExistente.setValidade(novoProduto.getValidade());
-      return produtoExistente;
-    }
-    throw new RuntimeException("Produto de id " + id + " nao encontrado");
-  }
-
-  public ProdutoFisico atualizarProdutoFisicoNaoPericivel(ProdutoFisico novoProduto, Long id) {
-    Optional<Produto> opt = produtoRepository.getProdutoById(id);
-    if (opt.isPresent() && opt.get() instanceof ProdutoFisico) {
-      ProdutoFisico produtoExistente = (ProdutoFisico) opt.get();
-      produtoExistente.setNome(novoProduto.getNome());
-      produtoExistente.setPreco(novoProduto.getPreco());
-      produtoExistente.setQuantidadeEmEstoque(novoProduto.getQuantidadeEmEstoque());
-      produtoExistente.setPeso(novoProduto.getPeso());
-      produtoExistente.setTiposProdutos(novoProduto.getTiposProdutos());
+      if (novoProduto.getValidade() != null) {
+        produtoExistente.setValidade(novoProduto.getValidade());
+      }
       return produtoExistente;
     }
     throw new RuntimeException("Produto de id " + id + " nao encontrado");
@@ -84,7 +70,7 @@ public class ProdutoService {
 
   public ProdutoDigital atualizarProdutoDgital(ProdutoDigital novoProduto, Long id) {
     Optional<Produto> opt = produtoRepository.getProdutoById(id);
-    if(opt.isPresent() && opt.get() instanceof ProdutoDigital){
+    if (opt.isPresent() && opt.get() instanceof ProdutoDigital) {
       ProdutoDigital produtoExistente = (ProdutoDigital) opt.get();
       produtoExistente.setNome(novoProduto.getNome());
       produtoExistente.setPreco(novoProduto.getPreco());
