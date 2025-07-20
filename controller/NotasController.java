@@ -1,4 +1,7 @@
 import java.util.List;
+
+import model.cliente.Cliente;
+import model.notas.ItemNota;
 import model.notas.Nota;
 import repository.NotasRepository;
 import service.NotasService;
@@ -6,19 +9,17 @@ import service.NotasService;
 public class NotasController {
 
   private NotasService notasService;
-  private NotasRepository notasRepository;
 
-  public NotasController(NotasService notasService, NotasRepository notasRepository) {
+  public NotasController(NotasService notasService) {
     this.notasService = notasService;
-    this.notasRepository = notasRepository;
   }
 
-  public Nota criar(Nota nota) {
-    return notasService.criarNota(nota.getCliente(), nota.getListaItemNota());
+  public Nota criar(Cliente cliente, List<ItemNota> itens) {
+    return notasService.criarNota(cliente, itens);
   }
 
   public void listar() {
-    List<Nota> notas = notasRepository.listarNotas();
+    List<Nota> notas = notasService.listarNotas();
     if (notas.isEmpty()) {
       System.out.println("Nao ha nenhuma nota");
     }

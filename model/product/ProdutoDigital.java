@@ -11,19 +11,17 @@ public class ProdutoDigital extends Produto {
   public ProdutoDigital(String nome, BigDecimal preco, int quantidadeEmEstoque, double distanciaEntreCompradorLoja){
     super(nome, preco,quantidadeEmEstoque);
     this.distanciaEntreCompradorLoja=distanciaEntreCompradorLoja;
-    this.frete=calcularFrete(distanciaEntreCompradorLoja);
+    this.frete=calcularFrete();
   }
 
-  public BigDecimal calcularFrete(double distanciaEntreCompradorLoja){
+  public BigDecimal calcularFrete(){
     BigDecimal distancia = BigDecimal.valueOf(distanciaEntreCompradorLoja);
-    BigDecimal acrecimo = BigDecimal.valueOf(0.5);
-    BigDecimal resultado = distancia.multiply(acrecimo);
-    frete = frete.add(resultado);
-    return frete;
+    BigDecimal fator = new BigDecimal("0.5");
+    return distancia.multiply(fator);
   }
 
   public BigDecimal getFrete() {
-    return calcularFrete(distanciaEntreCompradorLoja);
+    return frete;
   }
 
   public double getDistanciaEntreCompradorLoja() {
@@ -32,6 +30,7 @@ public class ProdutoDigital extends Produto {
 
   public void setDistanciaEntreCompradorLoja(double distanciaEntreCompradorLoja) {
     this.distanciaEntreCompradorLoja = distanciaEntreCompradorLoja;
+    this.frete = this.calcularFrete();
   }
 
 }

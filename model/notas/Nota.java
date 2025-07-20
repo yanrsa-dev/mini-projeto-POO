@@ -27,9 +27,9 @@ public class Nota {
   }
 
 
-  public BigDecimal calcularTotalDaConta(List<ItemNota> listaItemNota){
+  public BigDecimal calcularTotalDaConta(){
     BigDecimal totalConta = BigDecimal.ZERO;
-    for(ItemNota itemNota : listaItemNota){
+    for(ItemNota itemNota : this.listaItemNota){
       totalConta = totalConta.add(itemNota.calcularSubtotal());
     }
     return totalConta;
@@ -69,7 +69,7 @@ public class Nota {
 
   @Override
   public String toString() {
-    return "Nota [cliente=" + cliente + ", listaItemNota=" + listaItemNota + "]" + "Total [total= R$" + calcularTotalDaConta(listaItemNota) + "]";
+    return "Nota [cliente=" + cliente + ", listaItemNota=" + listaItemNota + "]" + "Total [total= R$" + calcularTotalDaConta() + "]";
   }
   
 
