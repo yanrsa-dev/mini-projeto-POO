@@ -17,6 +17,12 @@ public abstract class Cliente {
     this.nome = nome;
     this.endereco = endereco;
   }
+  public Long getIdContador(){
+    return idContador;
+  }
+    public void setIdContador(Long idContador) {
+    this.idContador = idContador;
+  }
 
   public String getTelefone() {
     return telefone;
