@@ -12,13 +12,13 @@ public class ClienteController {
   }
 
   public void criarPessoaFisica(Cliente novoCliente){
-   clienteService.criarPessoaFisica(novoCliente.getNome()
-  , novoCliente.getEndereco(),novoCliente.getTelefone(), novoCliente.getCpf(), novoCliente.get)
+   clienteService.criarPessoaFisica(novoCliente.getTelefone(),novoCliente.getNome()
+  , novoCliente.getEndereco(), novoCliente.getCpf(), novoCliente.get)
   }
 
     public void criarPessoaJuridica(Cliente novoCliente){
-   clienteService.criarPessoaJuridica(novoCliente.getNome()
-  , novoCliente.getEndereco(),novoCliente.getTelefone(), novoCliente.getCnpj(), novoCliente.get)
+   clienteService.criarPessoaJuridica(novoCliente.getTelefone(),novoCliente.getNome()
+  , novoCliente.getEndereco(), novoCliente.getCnpj(), novoCliente.get)
   }
 
 }
