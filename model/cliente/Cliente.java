@@ -6,7 +6,8 @@ package model.cliente;
 • Atualizar clientes.*/
 
 public abstract class Cliente {
-
+  private static Long idContador=1L;
+  private Long id;
   private String telefone;
   private String nome;
   private String endereco;
