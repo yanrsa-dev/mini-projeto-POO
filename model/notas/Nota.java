@@ -2,76 +2,77 @@ package model.notas;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.cliente.Cliente;
 import model.notas.ItemNota;
 
 public class Nota {
-
 
   private Cliente cliente;
   private List<ItemNota> listaItemNota;
   private Long id;
   private LocalDateTime data;
 
-  public Nota(){
-    this.listaItemNota=new ArrayList<>();
-  }
+  public Nota() { this.listaItemNota = new ArrayList<>(); }
 
-  public Nota(Cliente cliente, List<ItemNota> listaItemNota){
-    this.cliente=cliente;
-    this.listaItemNota= listaItemNota;
+  public Nota(Cliente cliente, List<ItemNota> listaItemNota) {
+    this.cliente = cliente;
+    this.listaItemNota = listaItemNota;
     this.data = LocalDateTime.now();
   }
 
-
-  public BigDecimal calcularTotalDaConta(){
+  public BigDecimal calcularTotalDaConta() {
     BigDecimal totalConta = BigDecimal.ZERO;
-    for(ItemNota itemNota : this.listaItemNota){
+    for (ItemNota itemNota : this.listaItemNota) {
       totalConta = totalConta.add(itemNota.calcularSubtotal());
     }
     return totalConta;
   }
 
-  public Cliente getCliente() {
-    return cliente;
-  }
+  public Cliente getCliente() { return cliente; }
 
-  public void setCliente(Cliente cliente) {
-    this.cliente = cliente;
-  }
+  public void setCliente(Cliente cliente) { this.cliente = cliente; }
 
-  public List<ItemNota> getListaItemNota() {
-    return listaItemNota;
-  }
+  public List<ItemNota> getListaItemNota() { return listaItemNota; }
 
   public void setListaItemNota(List<ItemNota> listaItemNota) {
     this.listaItemNota = listaItemNota;
   }
 
-  public Long getId() {
-    return id;
-  }
+  public Long getId() { return id; }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+  public void setId(Long id) { this.id = id; }
 
-  public LocalDateTime getData() {
-    return data;
-  }
+  public LocalDateTime getData() { return data; }
 
-  public void setData(LocalDateTime data) {
-    this.data = data;
-  }
+  public void setData(LocalDateTime data) { this.data = data; }
 
   @Override
   public String toString() {
-    return "Nota [cliente=" + cliente + ", listaItemNota=" + listaItemNota + "]" + "Total [total= R$" + calcularTotalDaConta() + "]";
-  }
-  
+    StringBuilder sb = new StringBuilder();
+    DateTimeFormatter formatter =
+        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
-  
+    sb.append("\n================== CUPOM FISCAL ==================\n");
+    sb.append(String.format("       NOTA Nº: %05d%n",
+                            getId())); 
+    sb.append(String.format("       Data: %s%n", getData().format(formatter)));
+    sb.append(String.format("       Cliente: %s%n", getCliente().getNome()));
+    sb.append("--------------------------------------------------\n");
+    sb.append("                      ITENS\n");
+    sb.append("--------------------------------------------------\n");
+
+    for (ItemNota item : this.listaItemNota) {
+      sb.append(item.toString()).append("\n");
+    }
+
+    sb.append("--------------------------------------------------\n");
+    sb.append(String.format("       VALOR TOTAL A PAGAR: R$ %.2f%n",
+                            calcularTotalDaConta()));
+    sb.append("==================================================\n");
+
+    return sb.toString();
+  }
 }

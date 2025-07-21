@@ -14,5 +14,12 @@ public class PessoaFisica extends Cliente{
     this.cpf = cpf;
   }
 
+@Override
+public String toString() {
+    String infoComum = super.toString();
+    
+    return String.format("%s | Tipo: Pessoa Física | CPF: %s",
+        infoComum, getCpf());
+}
   
 }

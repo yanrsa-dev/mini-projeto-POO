@@ -1,10 +1,6 @@
 package model.cliente;
 
 
-/*• Cadastrar cliente com identificador único, nome, endereço e telefone.
-• Listar clientes.
-• Atualizar clientes.*/
-
 public abstract class Cliente {
   private Long id;
   private String nome;
@@ -17,11 +13,12 @@ public abstract class Cliente {
     this.endereco = endereco;
   }
 
-  public Long getId(){
+  public Long getId() {
     return id;
   }
-  public void setId(Long id){
-    this.id=id;
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getTelefone() {
@@ -47,5 +44,12 @@ public abstract class Cliente {
   public void setEndereco(String endereco) {
     this.endereco = endereco;
   }
- 
+
+  @Override
+  public String toString() {
+    // Formata as informações comuns a todos os clientes
+    return String.format(
+        "ID: %d | Nome: %s | Endereço: %s | Telefone: %s",
+        getId(), getNome(), getEndereco(), getTelefone());
+  }
 }
