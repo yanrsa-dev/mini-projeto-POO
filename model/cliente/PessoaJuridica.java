@@ -18,10 +18,8 @@ public class PessoaJuridica extends Cliente {
 
   @Override
   public String toString() {
-    // 1. Chama o toString() da classe mãe (Cliente)
     String infoComum = super.toString();
 
-    // 2. Adiciona a informação específica desta classe (CNPJ)
     return String.format("%s | Tipo: Pessoa Jurídica | CNPJ: %s", infoComum, getCnpj());
   }
 }

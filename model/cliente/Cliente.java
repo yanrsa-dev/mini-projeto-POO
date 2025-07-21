@@ -47,7 +47,6 @@ public abstract class Cliente {
 
   @Override
   public String toString() {
-    // Formata as informações comuns a todos os clientes
     return String.format(
         "ID: %d | Nome: %s | Endereço: %s | Telefone: %s",
         getId(), getNome(), getEndereco(), getTelefone());
