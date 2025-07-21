@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.cliente.Cliente;
-import model.notas.ItemNota;
 
 public class Nota {
 

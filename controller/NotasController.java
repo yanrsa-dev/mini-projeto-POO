@@ -4,7 +4,6 @@ import java.util.List;
 import model.cliente.Cliente;
 import model.notas.ItemNota;
 import model.notas.Nota;
-import repository.NotasRepository;
 import service.NotasService;
 
 public class NotasController {

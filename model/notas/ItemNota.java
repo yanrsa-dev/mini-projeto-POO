@@ -1,8 +1,6 @@
 package model.notas;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import model.product.Produto;
 
 public class ItemNota {

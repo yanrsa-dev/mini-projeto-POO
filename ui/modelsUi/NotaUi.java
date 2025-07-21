@@ -11,10 +11,6 @@ import model.cliente.Cliente;
 import model.notas.ItemNota;
 import model.product.Produto;
 import model.notas.Nota;
-import repository.ClienteRepository;
-import repository.ProdutoRepository;
-import repository.NotasRepository;
-import service.NotasService;
 import ui.InputUtils;
 
 public class NotaUi {
@@ -49,7 +45,7 @@ public class NotaUi {
     String continuar;
     do {
       System.out.println("\nAdicionando item à nota...");
-      produtoController.listarProdutos(); // Você precisa ter esse método
+      produtoController.listarProdutos(); 
       Long idProduto = InputUtils.lerLong("Digite o ID do produto: ");
       Optional<Produto> produtoOpt = produtoController.buscarProdutoById(idProduto);
 
