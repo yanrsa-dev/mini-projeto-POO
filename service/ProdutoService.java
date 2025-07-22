@@ -2,7 +2,6 @@ package service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import model.product.Produto;
@@ -103,7 +102,7 @@ public class ProdutoService {
     return produtoRepository.getProdutoById(id);
   }
 
-  public List<Produto> listarProdutos() {
+  public Produto[] listarProdutos() {
     return produtoRepository.listar();
   }
 }
