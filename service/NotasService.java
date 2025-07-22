@@ -1,22 +1,23 @@
 package service;
 
 
+import java.util.List;
 import java.util.Optional;
 import model.cliente.Cliente;
 import model.notas.ItemNota;
 import model.notas.Nota;
 import model.product.Produto;
-import repository.NotasRepository;
+import repository.NotasRepositoryImpl;
 
 public class NotasService {
 
-  private NotasRepository notasRepository;
+  private NotasRepositoryImpl notasRepository;
 
-  public NotasService(NotasRepository notasRepository) {
+  public NotasService(NotasRepositoryImpl notasRepository) {
     this.notasRepository = notasRepository;
   }
 
-  public Nota criarNota(Cliente cliente, List<ItemNota> itens) {
+  public Nota criarNota(Cliente cliente, ItemNota[] itens) {
     for (ItemNota item : itens) {
       Produto produtoNoEstoque = item.getProduto();
       int quantidadeComprada = item.getQuantidadeDeItens();

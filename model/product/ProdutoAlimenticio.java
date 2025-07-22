@@ -37,20 +37,21 @@ public class ProdutoAlimenticio extends Produto {
     return String.format(
         "--- PRODUTO ALIMENTÍCIO ---%s"
             + "\n  CÓDIGO: %d"
-            + // <--- ID ADICIONADO AQUI
-            "\n  PRODUTO: %s"
+            + "\n  PRODUTO: %s"
             + "\n  MARCA: %s"
             + "\n  PESO: %.3f kg"
             + "\n\n  PREÇO: R$ %.2f"
+            + "\n\n  Estoque: %d"
             + "\n\n  CONSUMIR ATÉ: %s"
             + "%s"
             + "%s",
         separador,
-        getId(), // <--- ID ADICIONADO AQUI
+        getId(),
         getNome().toUpperCase(),
         getMarca(),
         getPeso(),
         getPreco(),
+        getQuantidadeEmEstoque(),
         getValidade().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")),
         alertaVencimento,
         separador);

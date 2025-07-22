@@ -2,7 +2,8 @@ package model.product;
 
 import java.math.BigDecimal;
 
-public abstract class Produto {
+abstract public class Produto {
+
 
   private Long id;
   private String nome;
@@ -12,13 +13,14 @@ public abstract class Produto {
   private String marca;
 
 
-  public Produto(String nome, BigDecimal preco, int quantidadeEmEstoque, double peso, String marca) {
+ public Produto(String nome, BigDecimal preco, int quantidadeEmEstoque, double peso, String marca) {
     this.nome = nome;
     this.preco = preco;
     this.quantidadeEmEstoque=quantidadeEmEstoque;
     this.peso=peso;
     this.marca=marca;
-  }
+ }
+
 
 
   public Long getId() {
@@ -83,6 +85,7 @@ public abstract class Produto {
     return "Produto [id=" + id + ", nome=" + nome + ", preco=" + preco + ", quantidadeEmEstoque=" + quantidadeEmEstoque
         + "]";
   }
+
 
 
 

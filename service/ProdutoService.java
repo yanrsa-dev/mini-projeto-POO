@@ -8,13 +8,13 @@ import model.product.Produto;
 import model.product.ProdutoAlimenticio;
 import model.product.ProdutoEletronico;
 import model.product.ProdutoDomesticos;
-import repository.ProdutoRepository;
+import repository.ProdutoRepositoryImpl;
 
 public class ProdutoService {
 
-  private ProdutoRepository produtoRepository;
+  private ProdutoRepositoryImpl produtoRepository;
 
-  public ProdutoService(ProdutoRepository produtoRepository) {
+  public ProdutoService(ProdutoRepositoryImpl produtoRepository) {
     this.produtoRepository = produtoRepository;
   }
 
@@ -25,10 +25,10 @@ public class ProdutoService {
       double peso,
       String marca,
       LocalDate validade) {
-    ProdutoAlimenticio novoProduto =
+    Produto novoProduto =
         new ProdutoAlimenticio(nome, preco, qtdEstoque, peso, marca, validade);
     produtoRepository.adicionaProduto(novoProduto);
-    return novoProduto;
+    return (ProdutoAlimenticio) novoProduto;
   }
 
   public ProdutoEletronico criarProdutoEletronico(
@@ -39,10 +39,10 @@ public class ProdutoService {
       String marca,
       int voltagem,
       LocalDate garantia) {
-    ProdutoEletronico novoProduto =
+    Produto novoProduto =
         new ProdutoEletronico(nome, preco, qtdEstoque, peso, marca, voltagem, garantia);
     produtoRepository.adicionaProduto(novoProduto);
-    return novoProduto;
+    return (ProdutoEletronico) novoProduto;
   }
 
   public ProdutoDomesticos criarProdutosDomesticos(
@@ -53,10 +53,10 @@ public class ProdutoService {
       String marca,
       String material,
       String utilidade) {
-    ProdutoDomesticos novoProduto =
+    Produto novoProduto =
         new ProdutoDomesticos(nome, preco, qtdEstoque, peso, marca, material, utilidade);
     produtoRepository.adicionaProduto(novoProduto);
-    return novoProduto;
+    return (ProdutoDomesticos) novoProduto;
   }
 
   public Produto atualizarProduto(Long id, Produto produtoAtualizado) {

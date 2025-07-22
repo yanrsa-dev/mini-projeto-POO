@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Arrays;
+import java.util.List;
 
 import model.cliente.Cliente;
 import model.notas.ItemNota;
@@ -14,13 +16,13 @@ public class NotasController {
     this.notasService = notasService;
   }
 
-  public Nota criar(Cliente cliente, List<ItemNota> itens) {
+  public Nota criar(Cliente cliente, ItemNota[] itens) {
     return notasService.criarNota(cliente, itens);
   }
 
   public void listar() {
    Nota[] notas = notasService.listarNotas();
-    if (notas.isEmpty()) {
+    if (Arrays.equals(notas, null)) {
       System.out.println("Nao ha nenhuma nota");
     }
     for (Nota n : notas) {

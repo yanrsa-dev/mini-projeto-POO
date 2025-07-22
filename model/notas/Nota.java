@@ -10,13 +10,13 @@ import model.cliente.Cliente;
 public class Nota {
 
   private Cliente cliente;
-  private List<ItemNota> listaItemNota;
+  private ItemNota[] listaItemNota;
   private Long id;
   private LocalDateTime data;
 
-  public Nota() { this.listaItemNota = new ArrayList<>(); }
+  public Nota() { this.listaItemNota = new ItemNota[10000]; }
 
-  public Nota(Cliente cliente, List<ItemNota> listaItemNota) {
+  public Nota(Cliente cliente, ItemNota[] listaItemNota) {
     this.cliente = cliente;
     this.listaItemNota = listaItemNota;
     this.data = LocalDateTime.now();
@@ -34,9 +34,9 @@ public class Nota {
 
   public void setCliente(Cliente cliente) { this.cliente = cliente; }
 
-  public List<ItemNota> getListaItemNota() { return listaItemNota; }
+  public ItemNota[] getListaItemNota() { return listaItemNota; }
 
-  public void setListaItemNota(List<ItemNota> listaItemNota) {
+  public void setListaItemNota(ItemNota[] listaItemNota) {
     this.listaItemNota = listaItemNota;
   }
 

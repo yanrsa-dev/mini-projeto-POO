@@ -1,6 +1,7 @@
 package ui.modelsUi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,8 @@ public class NotaUi {
     Cliente clienteSelecionado = clienteOpt.get();
 
     // 2. Adicionar Itens
-    List<ItemNota> itensNota = new ArrayList<>();
+    ItemNota[] itensNota = new ItemNota[100];
+    int tamanhoAtualItensNota=0;
     String continuar;
     do {
       System.out.println("\nAdicionando item à nota...");
@@ -63,14 +65,19 @@ public class NotaUi {
                            produtoSelecionado.getQuantidadeEmEstoque());
       } else {
         ItemNota item = new ItemNota(produtoSelecionado, quantidade);
-        itensNota.add(item);
+        if(tamanhoAtualItensNota == itensNota.length){
+          ItemNota[] novoArrayItemNota = new ItemNota[tamanhoAtualItensNota*2];
+          System.arraycopy(itensNota, 0 , novoArrayItemNota, 0, itensNota.length);
+          itensNota = novoArrayItemNota;
+        }
+        itensNota[tamanhoAtualItensNota++]=item;
         System.out.println("Item adicionado!");
       }
 
       continuar = InputUtils.lerString("Adicionar outro item? (s/n): ");
     } while (continuar.equalsIgnoreCase("s"));
 
-    if (itensNota.isEmpty()) {
+    if (Arrays.equals(itensNota, null)) {
       System.out.println("Nenhum item adicionado. Nota cancelada.");
       return;
     }
