@@ -5,7 +5,6 @@ import model.cliente.PessoaFisica;
 import model.cliente.PessoaJuridica;
 import service.ClienteService;
 
-import java.util.List;
 import java.util.Optional;
 
 public class ClienteController {
@@ -25,7 +24,7 @@ private ClienteService clienteService;
         clienteService.cadastrarCliente(pj);
     }
    public void listarClientes() {
-        List<Cliente> clientes = clienteService.listarClientes();
+      Cliente[] clientes = clienteService.listarClientes();
 
         if (clientes.isEmpty()) {
             System.out.println("Nenhum cliente cadastrado.");
