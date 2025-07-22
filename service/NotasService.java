@@ -1,6 +1,6 @@
 package service;
 
-import java.util.List;
+
 import java.util.Optional;
 import model.cliente.Cliente;
 import model.notas.ItemNota;
@@ -35,7 +35,7 @@ public class NotasService {
     return novaNota;
   }
 
-  public List<Nota> listarNotas() {
+  public Nota[] listarNotas() {
     return notasRepository.listarNotas();
   }
 
