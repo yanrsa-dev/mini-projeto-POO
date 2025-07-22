@@ -1,5 +1,5 @@
 package controller;
-import java.util.List;
+
 
 import model.cliente.Cliente;
 import model.notas.ItemNota;
@@ -19,7 +19,7 @@ public class NotasController {
   }
 
   public void listar() {
-    List<Nota> notas = notasService.listarNotas();
+   Nota[] notas = notasService.listarNotas();
     if (notas.isEmpty()) {
       System.out.println("Nao ha nenhuma nota");
     }
