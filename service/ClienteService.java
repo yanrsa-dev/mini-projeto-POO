@@ -3,7 +3,7 @@ package service;
 import model.cliente.Cliente;
 import repository.ClienteRepository;
 
-import java.util.List;
+
 import java.util.Optional;
 
 public class ClienteService {
@@ -18,7 +18,7 @@ public class ClienteService {
         clienteRepository.cadastraCliente(cliente);
     }
 
-    public List<Cliente> listarClientes() {
+    public Cliente[] listarClientes() {
         return clienteRepository.getClientes();
     }
 
