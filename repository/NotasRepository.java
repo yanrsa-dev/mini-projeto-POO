@@ -1,28 +1,35 @@
 package repository;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import model.notas.Nota;
 
 
 public class NotasRepository {
-
-  private List<Nota> notas = new ArrayList<>();
+  private Nota[] notas= new Nota[tamanhoAtual];
+  private int tamanhoAtual=0;
   private static Long contador=1L;
-
+  
   public void adicionaNota(Nota nota){
+  if(tamanhoAtual == notas.length){
+        Nota[] novoArray = new Nota[notas.length + 10];
+        System.arraycopy(notas,0,novoArray,0,notas.length);
+       notas = novoArray;
+    }
     nota.setId(contador++);
-    notas.add(nota);
+    notas[tamanhoAtual++] = nota;
   }
 
-  public List<Nota> listarNotas(){
-    return notas;
+  public Nota[] listarNotas(){
+   Nota[] notasAtuais = new Nota[tamanhoAtual];
+     System.arraycopy(notas,0,notasAtuais,0,notas.length);
+    return notasAtuais;
   }
 
   public Optional<Nota> getNotaById(Long id){
-    return notas.stream()
-      .filter(n -> n.getId().equals(id))
-      .findFirst();
-  }
+     for (int i = 0; i < tamanhoAtual; i++) {
+        if (notas[i].getId().equals(id)) {
+            return Optional.of(notas[i]);
+        }
+    }
+    return Optional.empty();
 }
