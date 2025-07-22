@@ -2,7 +2,6 @@ package controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import service.ProdutoService;
@@ -58,7 +57,7 @@ public class ProdutoController {
   }
 
   public void listarProdutos() {
-    List<Produto> produtos = produtoService.listarProdutos();
+    Produto[] produtos = produtoService.listarProdutos();
     if (produtos.isEmpty()) {
       System.out.println("Nenhum produto cadastrado no sistema.");
       return;
