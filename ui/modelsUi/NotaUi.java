@@ -1,30 +1,28 @@
 package ui.modelsUi;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
 import controller.ClienteController;
 import controller.NotasController;
 import controller.ProdutoController;
+import java.util.Optional;
 import model.cliente.Cliente;
 import model.notas.ItemNota;
-import model.product.Produto;
 import model.notas.Nota;
+import model.product.Produto;
 import ui.InputUtils;
 
 public class NotaUi {
-
 
   private NotasController notasController;
   private ProdutoController produtoController;
   private ClienteController clienteController;
 
-  public NotaUi(NotasController notasController, ProdutoController produtoController, ClienteController clienteController) {
+  public NotaUi(
+      NotasController notasController,
+      ProdutoController produtoController,
+      ClienteController clienteController) {
     this.notasController = notasController;
-    this.produtoController=produtoController;
-    this.clienteController=clienteController;
+    this.produtoController = produtoController;
+    this.clienteController = clienteController;
   }
 
   public void criarNotaDeCompra() {
@@ -43,11 +41,11 @@ public class NotaUi {
 
     // 2. Adicionar Itens
     ItemNota[] itensNota = new ItemNota[100];
-    int tamanhoAtualItensNota=0;
+    int tamanhoAtualItensNota = 0;
     String continuar;
     do {
       System.out.println("\nAdicionando item à nota...");
-      produtoController.listarProdutos(); 
+      produtoController.listarProdutos();
       Long idProduto = InputUtils.lerLong("Digite o ID do produto: ");
       Optional<Produto> produtoOpt = produtoController.buscarProdutoById(idProduto);
 
@@ -61,23 +59,24 @@ public class NotaUi {
       int quantidade = InputUtils.lerInt("Digite a quantidade: ");
 
       if (produtoSelecionado.getQuantidadeEmEstoque() < quantidade) {
-        System.out.println("Erro: Estoque insuficiente! Estoque atual: " +
-                           produtoSelecionado.getQuantidadeEmEstoque());
+        System.out.println(
+            "Erro: Estoque insuficiente! Estoque atual: "
+                + produtoSelecionado.getQuantidadeEmEstoque());
       } else {
         ItemNota item = new ItemNota(produtoSelecionado, quantidade);
-        if(tamanhoAtualItensNota == itensNota.length){
-          ItemNota[] novoArrayItemNota = new ItemNota[tamanhoAtualItensNota*2];
-          System.arraycopy(itensNota, 0 , novoArrayItemNota, 0, itensNota.length);
+        if (tamanhoAtualItensNota == itensNota.length) {
+          ItemNota[] novoArrayItemNota = new ItemNota[tamanhoAtualItensNota * 2];
+          System.arraycopy(itensNota, 0, novoArrayItemNota, 0, itensNota.length);
           itensNota = novoArrayItemNota;
         }
-        itensNota[tamanhoAtualItensNota++]=item;
+        itensNota[tamanhoAtualItensNota++] = item;
         System.out.println("Item adicionado!");
       }
 
       continuar = InputUtils.lerString("Adicionar outro item? (s/n): ");
     } while (continuar.equalsIgnoreCase("s"));
 
-    if (Arrays.equals(itensNota, null)) {
+    if (tamanhoAtualItensNota == 0) {
       System.out.println("Nenhum item adicionado. Nota cancelada.");
       return;
     }
@@ -95,5 +94,4 @@ public class NotaUi {
     System.out.println("\n--- Listando Notas Emitidas ---");
     notasController.listar();
   }
-
 }

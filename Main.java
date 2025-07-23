@@ -3,6 +3,8 @@ import controller.NotasController;
 import controller.ProdutoController;
 import repository.ClienteRepository;
 import repository.NotasRepositoryImpl;
+import repository.NotasRepository;
+import repository.ProdutoRepository;
 import repository.ProdutoRepositoryImpl;
 import service.ClienteService;
 import service.NotasService;
@@ -17,8 +19,8 @@ public class Main {
     public static void main(String[] args) {
 
         ClienteRepository clienteRepository = new ClienteRepository();
-        ProdutoRepositoryImpl produtoRepository = new ProdutoRepositoryImpl();
-        NotasRepositoryImpl notasRepository = new NotasRepositoryImpl();
+        ProdutoRepository produtoRepository = new ProdutoRepositoryImpl();
+        NotasRepository notasRepository = new NotasRepositoryImpl();
 
         ClienteService clienteService = new ClienteService(clienteRepository);
         ProdutoService produtoService = new ProdutoService(produtoRepository);

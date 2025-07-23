@@ -59,7 +59,7 @@ public class ProdutoController {
 
   public void listarProdutos() {
     Produto[] produtos = produtoService.listarProdutos();
-    if (Arrays.equals(produtos, null)) {
+    if (produtos.length == 0) {
       System.out.println("Nenhum produto cadastrado no sistema.");
       return;
     }

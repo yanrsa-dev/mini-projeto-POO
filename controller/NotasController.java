@@ -22,7 +22,7 @@ public class NotasController {
 
   public void listar() {
    Nota[] notas = notasService.listarNotas();
-    if (Arrays.equals(notas, null)) {
+    if (notas.length == 0) {
       System.out.println("Nao ha nenhuma nota");
     }
     for (Nota n : notas) {

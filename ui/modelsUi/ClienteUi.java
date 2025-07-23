@@ -95,15 +95,15 @@ public class ClienteUi {
 
   public void listarClientes() {
     System.out.println("\n--- Listando Clientes Cadastrados ---");
-    List<Cliente> clientes = clienteService.listarClientes();
-    if (clientes.isEmpty()) {
+    Cliente[] clientes = clienteService.listarClientes();
+    if (clientes.length == 0) {
       System.out.println("Nenhum cliente cadastrado.");
       return;
     }
-    for (Cliente c : clientes) {
-      String tipoCliente = (c instanceof PessoaFisica) ? "Pessoa Física" : "Pessoa Jurídica";
+    for (int i=0;i<clientes.length;i++) {
+      String tipoCliente = (clientes[i] instanceof PessoaFisica) ? "Pessoa Física" : "Pessoa Jurídica";
       System.out.printf("ID: %d | Nome: %s | Telefone: %s | Tipo: %s%n",
-                        c.getId(), c.getNome(), c.getTelefone(), tipoCliente);
+                        clientes[i].getId(), clientes[i].getNome(), clientes[i].getTelefone(), tipoCliente);
     }
   }
 }

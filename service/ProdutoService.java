@@ -8,13 +8,13 @@ import model.product.Produto;
 import model.product.ProdutoAlimenticio;
 import model.product.ProdutoEletronico;
 import model.product.ProdutoDomesticos;
-import repository.ProdutoRepositoryImpl;
+import repository.ProdutoRepository;
 
 public class ProdutoService {
 
-  private ProdutoRepositoryImpl produtoRepository;
+  private ProdutoRepository produtoRepository;
 
-  public ProdutoService(ProdutoRepositoryImpl produtoRepository) {
+  public ProdutoService(ProdutoRepository produtoRepository) {
     this.produtoRepository = produtoRepository;
   }
 

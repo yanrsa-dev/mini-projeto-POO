@@ -1,10 +1,11 @@
 package repository;
+import java.util.Arrays;
 import java.util.Optional;
 
 import model.cliente.Cliente;
 
 public class ClienteRepository {
-  private Cliente[] clientes= new Cliente[tamanhoAtual];
+  private Cliente[] clientes= new Cliente[10];
   private int tamanhoAtual=0;
   private static Long contador=1L;
   
@@ -19,9 +20,7 @@ public class ClienteRepository {
   }
 
   public Cliente[] getClientes(){
-    Cliente[] clientesAtuais = new Cliente[tamanhoAtual];
-     System.arraycopy(clientes,0,clientesAtuais,0,clientes.length);
-    return clientesAtuais;
+    return Arrays.copyOf(clientes, tamanhoAtual);
   }
    public Optional<Cliente> buscarClientePorId(Long id) {
          for (int i = 0; i < tamanhoAtual; i++) {
@@ -34,9 +33,10 @@ public class ClienteRepository {
 
 
 public boolean atualizarCliente(Cliente clienteAtualizado) {
-        for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getId() == clienteAtualizado.getId()) {
-                clientes.set(i, clienteAtualizado);
+        for (int i = 0; i < clientes.length; i++) {
+            if (clientes[i].getId() == clienteAtualizado.getId()) {
+                clientes[i].setId(clienteAtualizado.getId());
+                clientes[i] = clienteAtualizado;
                 return true;
             }
         }

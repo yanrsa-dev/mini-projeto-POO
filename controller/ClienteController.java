@@ -1,5 +1,4 @@
  package controller;
-
 import model.cliente.Cliente;
 import model.cliente.PessoaFisica;
 import model.cliente.PessoaJuridica;
@@ -26,13 +25,13 @@ private ClienteService clienteService;
    public void listarClientes() {
       Cliente[] clientes = clienteService.listarClientes();
 
-        if (clientes.isEmpty()) {
+        if (clientes.length == 0) {
             System.out.println("Nenhum cliente cadastrado.");
             return;
         }
 
-        for (Cliente cliente : clientes) {
-          System.out.println(cliente);
+        for(Cliente c : clientes){
+          System.out.println(c);
         }
     }
 

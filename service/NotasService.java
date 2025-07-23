@@ -1,26 +1,27 @@
 package service;
 
-
 import java.util.List;
 import java.util.Optional;
 import model.cliente.Cliente;
 import model.notas.ItemNota;
 import model.notas.Nota;
 import model.product.Produto;
-import repository.NotasRepositoryImpl;
+import repository.NotasRepository;
+import repository.ProdutoRepository;
 
 public class NotasService {
 
-  private NotasRepositoryImpl notasRepository;
+  private NotasRepository notasRepository;
 
-  public NotasService(NotasRepositoryImpl notasRepository) {
+  public NotasService(NotasRepository notasRepository) {
     this.notasRepository = notasRepository;
   }
 
   public Nota criarNota(Cliente cliente, ItemNota[] itens) {
-    for (ItemNota item : itens) {
-      Produto produtoNoEstoque = item.getProduto();
-      int quantidadeComprada = item.getQuantidadeDeItens();
+    for(int i=0; i< itens.length; i++){
+      if(itens[i]==null)continue;
+      Produto produtoNoEstoque = itens[i].getProduto();
+      int quantidadeComprada = itens[i].getQuantidadeDeItens();
 
       if (produtoNoEstoque.getQuantidadeEmEstoque() < quantidadeComprada) {
         throw new RuntimeException(
