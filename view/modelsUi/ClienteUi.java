@@ -1,10 +1,10 @@
- package ui.modelsUi;
+package view.modelsUi;
 
 import controller.ClienteController;
 import model.cliente.*;
 import repository.ClienteRepository;
 import service.ClienteService;
-import ui.InputUtils;
+import view.InputUtils;
 
 import java.util.List;
 import java.util.Optional;

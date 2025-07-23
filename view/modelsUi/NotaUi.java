@@ -1,4 +1,4 @@
-package ui.modelsUi;
+package view.modelsUi;
 
 import controller.ClienteController;
 import controller.NotasController;
@@ -8,7 +8,7 @@ import model.cliente.Cliente;
 import model.notas.ItemNota;
 import model.notas.Nota;
 import model.product.Produto;
-import ui.InputUtils;
+import view.InputUtils;
 
 public class NotaUi {
 

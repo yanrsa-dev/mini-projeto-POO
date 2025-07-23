@@ -1,8 +1,8 @@
-package ui;
+package view;
 
-import ui.modelsUi.ClienteUi;
-import ui.modelsUi.NotaUi;
-import ui.modelsUi.ProdutoUi;
+import view.modelsUi.ClienteUi;
+import view.modelsUi.NotaUi;
+import view.modelsUi.ProdutoUi;
 
 public class ConsoleMenu {
 

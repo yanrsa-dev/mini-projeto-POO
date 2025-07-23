@@ -9,10 +9,10 @@ import repository.ProdutoRepositoryImpl;
 import service.ClienteService;
 import service.NotasService;
 import service.ProdutoService;
-import ui.ConsoleMenu;
-import ui.modelsUi.ClienteUi;
-import ui.modelsUi.NotaUi;
-import ui.modelsUi.ProdutoUi;
+import view.ConsoleMenu;
+import view.modelsUi.ClienteUi;
+import view.modelsUi.NotaUi;
+import view.modelsUi.ProdutoUi;
 
 public class Main {
 

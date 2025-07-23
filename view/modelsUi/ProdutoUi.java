@@ -1,4 +1,4 @@
-package ui.modelsUi;
+package view.modelsUi;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -8,14 +8,13 @@ import model.product.Produto;
 import model.product.ProdutoAlimenticio;
 import model.product.ProdutoEletronico;
 import model.product.ProdutoDomesticos;
-import ui.InputUtils;
+import view.InputUtils;
 
 
 public class ProdutoUi {
 
   private ProdutoController produtoController;
 
-  public ProdutoUi(){}
 
   public ProdutoUi(ProdutoController produtoController) {
     this.produtoController = produtoController;
